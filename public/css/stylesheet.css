@@ -1,0 +1,39 @@
+input {
+    margin-bottom: 1em;
+}
+
+button {
+    border-radius: 5px 5px 5px 5px;
+    padding: 15px;
+    color: white;
+}
+
+#addButton {
+    background-color: forestgreen;
+    text-decoration-color: white;
+}
+
+#saveButton {
+    background-color: blue;
+}
+
+#deleteButton {
+    background-color: red;
+}
+
+#backButton {
+    background-color: darkgrey
+}
+
+
+.landingDiv {
+    width: 100%;
+    
+}
+
+.landingPageButton {
+    font-size: 50;
+    background-color: powderblue;
+    text-decoration: none;
+    color: darkblue;
+}

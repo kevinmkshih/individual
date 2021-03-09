@@ -1,0 +1,46 @@
+<html>
+<body>
+<h1>Enter question</h1>
+<p>
+    If entering a question with only 2 choices, enter choices in the first two
+    boxes.
+</p>
+<p>Question:</p>
+<form>
+    <textarea rows="7" col="50" id="questionTextArea" name="questionText"></textarea><br/><br/>
+    <input type="radio" id="r1" name="radio" value="1"/>
+    <input type="text" id="q1" name="q1"/><br/>
+    <input type="radio" id="r2" name="radio" value="2"/>
+    <input type="text" id="q2" name="q2"/><br/>
+    <input type="radio" id="r3" name="radio" value="3"/>
+    <input type="text" id="q3" name="q3"/><br/>
+    <input type="radio" id="r4" name="radio" value="4"/>
+    <input type="text" id="q4" name="q4"/><br/>
+</form>
+<button id="TwoAnswer">2 Answer</button>
+<button  id="FourAnswer">4 Answer</button>
+
+<div id="demo"></div>
+
+<h1>Update question</h1>
+
+<form>
+    <textarea rows="7" col="50" id="uQuestionTextArea" name="uquestionText"></textarea><br/><br/>
+    <input type="radio" id="ur1" name="radio" value="1"/>
+    <input type="text" id="uq1" name="q1"/><br/>
+    <input type="radio" id="ur2" name="radio" value="2"/>
+    <input type="text" id="uq2" name="q2"/><br/>
+    <input type="radio" id="ur3" name="radio" value="3"/>
+    <input type="text" id="uq3" name="q3"/><br/>
+    <input type="radio" id="ur4" name="radio" value="4"/>
+    <input type="text" id="uq4" name="q4"/><br/>
+</form>
+<button id="uTwoAnswer">2 Answer</button>
+<button id="uFourAnswer">4 Answer</button>
+<div id="demo2"></div>
+
+<button onclick="test()">TEST</button>
+<script src="static/js/admin_script.js"></script>
+
+</body>
+</html>

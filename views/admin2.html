@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+
+    <link rel="stylesheet" href="static/css/stylesheet.css">
+
+</head>
+
+
+<body>
+
+<!--Question Area-->
+
+<form action="/questions" method="POST">
+    <input name='user[name]' type="text">
+    <input type="submit" value='OK'>
+
+</form>
+
+<div>
+
+    <form>
+        <fieldset id="question_field">
+
+        </fieldset>
+
+    </form>
+
+    <button onclick="addButton()" id="addButton" type="button"> Add</button>
+    <button onclick="saveButton()" id="saveButton" type="button"> Save changes</button>
+    <button onclick="deleteButton()" id="deleteButton" type="button"> Delete</button>
+    <button onclick="location.href='/'" id="backButton">Back</button>
+
+</div>
+
+<script src="static/js/admin_script.js"></script>
+</body>
+
+
+</html>

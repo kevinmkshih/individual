@@ -1,0 +1,33 @@
+.question-text {
+    border: 1px solid black;
+}
+
+.textArea {
+    resize: none;
+    display: inline-block;
+    width: 500px;
+    height: auto;
+    margin: 2px;
+}
+
+.correctAnswer {
+    border: 2px solid green;
+}
+
+.wrongAnswer {
+    border: 2px solid red;
+}
+
+button {
+    border-radius: 5px 5px 5px 5px;
+    padding: 15px;
+    color: white;
+}
+
+#backButton {
+    background-color: darkgrey
+}
+
+#submitButton {
+    background-color: darkolivegreen;
+}
