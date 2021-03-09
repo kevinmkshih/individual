@@ -97,7 +97,7 @@ function showQuestion(question, num) {
   }
 }
 function getQuestions() {
-  xhttp.open("GET", "/questions", true);
+  xhttp.open("GET", "/individual/questions", true);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     console.log("xhttp ready");

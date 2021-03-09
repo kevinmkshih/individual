@@ -109,7 +109,7 @@ function postForm() {
     let q3 = document.getElementById('q3').value;
     let q4 = document.getElementById('q4').value;
     let question = document.getElementById('questionTextArea').value;
-    xhttp.open("POST", '/questions/?q1=' + q1 + '&q2=' + q2 + '&q3=' + q3 + '&q4=' + q4 + '&question=' + question +
+    xhttp.open("POST", '/individual/questions/?q1=' + q1 + '&q2=' + q2 + '&q3=' + q3 + '&q4=' + q4 + '&question=' + question +
         '&correctAnswer=' + correctAnswer + '&numberAnswer=' + numChoice, true);
     xhttp.send();
     xhttp.onreadystatechange = () => {
@@ -174,7 +174,7 @@ function putForm() {
     let q3 = document.getElementById('uq3').value;
     let q4 = document.getElementById('uq4').value;
     let question = document.getElementById('uQuestionTextArea').value;
-    xhttp.open("PUT", '/questions/?q1=' + q1 + '&q2=' + q2 + '&q3=' + q3 + '&q4=' + q4 + '&question=' + question +
+    xhttp.open("PUT", '/individual/questions/?q1=' + q1 + '&q2=' + q2 + '&q3=' + q3 + '&q4=' + q4 + '&question=' + question +
         '&correctAnswer=' + correctAnswer + '&choice=' + choice, true);
     xhttp.send();
     xhttp.onreadystatechange = () => {

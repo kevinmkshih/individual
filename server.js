@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
-app.use("/static", express.static("public"));
+app.use("/individual/public", express.static('public'));
 const mysql = require("mysql");
 const path = require("path");
 const port = 8000;
@@ -11,9 +11,9 @@ const url = require("url");
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "",
-    database: "sixnine",
+    user: "kevinshi_admin",
+    password: "admin",
+    database: "kevinshi_individual",
 });
 db.connect((err) => {
     if (err) {
@@ -22,19 +22,19 @@ db.connect((err) => {
     console.log("Connected");
 });
 
-app.get("/", (req, res) => {
+app.get("/individual", (req, res) => {
     res.sendFile(path.join(__dirname + "/views/choose.html"));
 });
 
-app.get("/admin", (req, res) => {
+app.get("/individual/admin", (req, res) => {
     res.sendFile(path.join(__dirname + "/views/admin.html"));
 });
 
-app.get("/student", (req, res) => {
+app.get("/individual/student", (req, res) => {
     res.sendFile(path.join(__dirname + "/views/student.html"));
 });
 
-app.post("/questions", (req, res) => {
+app.post("/individual/questions", (req, res) => {
     let q = url.parse(req.url, true);
     let numChoice = q.query['numberAnswer'];
     let q1 = q.query['q1'];
@@ -66,7 +66,7 @@ app.post("/questions", (req, res) => {
 
 })
 
-app.put("/questions", (req, res) => {
+app.put("/individual/questions", (req, res) => {
     let q = url.parse(req.url, true);
     let choice = q.query['choice'];
     let q1 = q.query['q1'];
@@ -120,7 +120,7 @@ function updateDatabase(couldUpdate, choice, q1, q2, q3, q4, question, correctAn
     }
 }
 
-app.get("/questions", (req, res) => {
+app.get("/individual/questions", (req, res) => {
     sql = "SELECT * FROM four_QUESTION";
         sql2 = "SELECT * FROM two_QUESTION";
 
