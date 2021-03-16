@@ -7,13 +7,14 @@ const path = require("path");
 const port = 8000;
 app.use(bodyParser.urlencoded({extended: false}));
 const url = require("url");
+const endpointRoot = "/individual";
 
 
 const db = mysql.createConnection({
     host: "localhost",
     user: "kevinshi_admin",
     password: "admin",
-    database: "kevinshi_individual",
+    database: "kevinshi_individual"
 });
 db.connect((err) => {
     if (err) {
@@ -22,19 +23,19 @@ db.connect((err) => {
     console.log("Connected");
 });
 
-app.get("/individual", (req, res) => {
+app.get(endpointRoot, (req, res) => {
     res.sendFile(path.join(__dirname + "/views/choose.html"));
 });
 
-app.get("/individual/admin", (req, res) => {
+app.get(endpointRoot + "/admin", (req, res) => {
     res.sendFile(path.join(__dirname + "/views/admin.html"));
 });
 
-app.get("/individual/student", (req, res) => {
+app.get(endpointRoot + "/student", (req, res) => {
     res.sendFile(path.join(__dirname + "/views/student.html"));
 });
 
-app.post("/individual/questions", (req, res) => {
+app.post(endpointRoot + "/questions", (req, res) => {
     let q = url.parse(req.url, true);
     let numChoice = q.query['numberAnswer'];
     let q1 = q.query['q1'];
@@ -45,10 +46,10 @@ app.post("/individual/questions", (req, res) => {
     let correctAnswer = q.query['correctAnswer'];
     let sql;
     if (numChoice == 5) {
-        sql = "INSERT INTO four_question (question, q1, q2, q3, q4, correctAnswer) values ('" +
+        sql = "INSERT INTO FOUR_QUESTION (question, q1, q2, q3, q4, correctAnswer) values ('" +
             question + "', '" + q1 + "', '" + q2 + "', '" + q3 + "', '" + q4 + "', '" + correctAnswer + "');";
     } else {
-        sql = "INSERT INTO two_question (question, q1, q2, correctAnswer) values ('" +
+        sql = "INSERT INTO TWO_QUESTION (question, q1, q2, correctAnswer) values ('" +
             question + "', '" + q1 + "', '" + q2 + "', '" + correctAnswer + "');";
 
     }
@@ -66,7 +67,7 @@ app.post("/individual/questions", (req, res) => {
 
 })
 
-app.put("/individual/questions", (req, res) => {
+app.put(endpointRoot + "/questions", (req, res) => {
     let q = url.parse(req.url, true);
     let choice = q.query['choice'];
     let q1 = q.query['q1'];
@@ -77,9 +78,9 @@ app.put("/individual/questions", (req, res) => {
     let correctAnswer = q.query['correctAnswer'];
     console.log("this choice: " + choice)
     if (choice == 4) {
-        sql = "SELECT * from four_question WHERE question='" + question + "\'";
+        sql = "SELECT * from FOUR_QUESTION WHERE question='" + question + "\'";
     } else {
-        sql = "SELECT * from two_question WHERE question='" + question + "\'";
+        sql = "SELECT * from TWO_QUESTION WHERE question='" + question + "\'";
         console.log(sql)
     }
 
@@ -104,14 +105,14 @@ function updateDatabase(couldUpdate, choice, q1, q2, q3, q4, question, correctAn
         return false;
     }
     if (choice == 4) {
-        sql = "UPDATE four_question SET Q1 ='" + q1 + "\', Q2 ='" + q2 + "\', Q3 ='" + q3 + "\', Q4 ='" + q4 + "\' " +
+        sql = "UPDATE FOUR_QUESTION SET Q1 ='" + q1 + "\', Q2 ='" + q2 + "\', Q3 ='" + q3 + "\', Q4 ='" + q4 + "\' " +
             ", correctAnswer = '" + correctAnswer + "' WHERE QUESTION = '" + question + "\'"
         console.log(sql)
         db.query(sql, (err, result) => {
             if (err) throw err;
         })
     } else {
-        sql = "UPDATE two_question SET Q1 ='" + q1 + "\', Q2 ='" + q2 + "\' " +
+        sql = "UPDATE TWO_QUESTION SET Q1 ='" + q1 + "\', Q2 ='" + q2 + "\' " +
             ", correctAnswer = '" + correctAnswer + "' WHERE QUESTION = '" + question + "\'"
         console.log(sql)
         db.query(sql, (err, result) => {
@@ -120,19 +121,19 @@ function updateDatabase(couldUpdate, choice, q1, q2, q3, q4, question, correctAn
     }
 }
 
-app.get("/individual/questions", (req, res) => {
-    sql = "SELECT * FROM four_QUESTION";
-        sql2 = "SELECT * FROM two_QUESTION";
+app.get(endpointRoot + "/questions", (req, res) => {
+    sql = "SELECT * FROM FOUR_QUESTION";
+        sql2 = "SELECT * FROM TWO_QUESTION";
 
-    let four_question;
-    let two_question;
+    let FOUR_QUESTION;
+    let TWO_QUESTION;
     db.query(sql, (err, results) => {
         if (err) throw err;
-        four_question = (results);
+        FOUR_QUESTION = (results);
         db.query(sql2, (err, results) => {
             if (err) throw err;
-            two_question = (results);
-            let together = four_question.concat(two_question)
+            TWO_QUESTION = (results);
+            let together = FOUR_QUESTION.concat(TWO_QUESTION)
 
             let togetherString = JSON.stringify(together)
             res.end(togetherString)
